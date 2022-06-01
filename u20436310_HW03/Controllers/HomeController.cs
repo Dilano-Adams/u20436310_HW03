@@ -12,6 +12,9 @@ namespace u20436310_HW03.Controllers
         {
             return View();
         }
-
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }

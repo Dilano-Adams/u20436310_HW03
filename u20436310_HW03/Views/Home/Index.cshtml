@@ -1,23 +1,50 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-<h1>This is Heading one</h1>
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+    }
 
-<h3>This is second heading</h3>
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
 
-<div>
-    <div>
-        <h2>Description</h2>
-        <p>THIS IS WHERE THE DESCRIPTION GOES!</p>
-        <div>
-            <h2>Options</h2>
-            <input type="radio" id="docs" name="rad_docs" value="Document">
-            <input type="radio" id="img" name="rad_img" value="Image">
-            <input type="radio" id="vid" name="rad_vid" value="Video">
+<h1 class="text-uppercase mb-0"> This is Heading one</h1>
 
-            <input type="file" id="myfile" name="myfile" multiple><br><br>
-            <input type="submit">
+<h3> This is second heading</h3>
+
+<div class="container d-flex align-items-center flex-column" style="background-color:khaki">
+    <div class="row">
+        <div class="column">
+            <h2> Description</h2>
+            <p> THIS IS WHERE THE DESCRIPTION GOES!</p>
+        </div>
+        <div class="column">
+            <form>
+                <h2>Option Selector</h2>
+                <input type="radio" id="docs" name="rad_docs" value="Document">
+                <label for="docs">Documents</label><br>
+                <input type="radio" id="img" name="rad_img" value="Image">
+                <label for="img">Images</label><br>
+                <input type="radio" id="vid" name="rad_vid" value="Video">
+                <label for="vid">Videos</label><br>
+
+                <input type="file" id="myfile" name="myfile" multiple> <br> <br>
+                <input type="submit">
+            </form>
         </div>
     </div>
 </div>
