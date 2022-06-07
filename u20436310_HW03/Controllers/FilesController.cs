@@ -26,7 +26,7 @@ namespace u20436310_HW03.Controllers
                     if (file != null)
                     {
                         var InputFileName = Path.GetFileName(file.FileName);
-                        var ServerSavePath = Path.Combine(Server.MapPath("~/App_Data/uploads/") + InputFileName);
+                        var ServerSavePath = Path.Combine(Server.MapPath("~/Media/Documents/") + InputFileName);
                         //Save file to server folder
                         file.SaveAs(ServerSavePath);
                         //assigning file uploaded status to ViewBag for showing message to user.
