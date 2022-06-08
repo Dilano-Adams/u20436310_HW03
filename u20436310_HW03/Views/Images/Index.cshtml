@@ -1,9 +1,61 @@
-﻿
+﻿@using u20436310_HW03.Models;
+@model List<FileModel>
 @{
     ViewBag.Title = "Images";
 }
 
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .img-container {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
 <h2>Images of any type</h2>
 
 <h4>Stored in the ""~/Media/Images" folder</h4>
 
+@foreach (var image in Model)
+{
+    <div class="clearfix">
+        <div class="img-container">
+
+            <a id="@image.FileName" href="~/Media/Images/@image.FileName"><img class="card-img-top" src="~/Media/Images/@image.FileName" alt="Images" style="height:300px"></a>
+            <h5 class="card-title">@image.FileName</h5>
+            <button class="btn btn-success">
+                @Html.ActionLink("Download", "DownloadFile",
+                 new { fileName = image.FileName })
+            </button>
+            <button class="btn btn-danger">
+                @Html.ActionLink("Delete", "DeleteFile",
+               new { fileName = image.FileName },
+               new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+            </button>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function ($) {
+        $("a.group").fancybox({
+            'width': '800px',
+            'height': '286px',
+            'autoScale': true,
+            'transitionIn': 'fade',
+            'transitionOut': 'fade',
+            'type': 'image',
+            'speedIn': 600,
+            'speedOut': 200,
+            'overlayShow': false
+        });
+</script>

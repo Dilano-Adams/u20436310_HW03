@@ -1,10 +1,70 @@
-﻿
+﻿@using u20436310_HW03.Models;
+@model List<FileModel>
 @{
     ViewBag.Title = "Videos";
 }
+
+<style>
+    button {
+        text-decoration-color: #000000
+    }
+
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .column {
+        flex: 33.33%;
+        padding: 5px;
+    }
+</style>
+
 
 <h2>Videos of any type</h2>
 
 <h4>Stored in the ""~/Media/Videos" folder</h4>
 
+@foreach (var video in Model)
+{
+    <div class="row">
+        <div class="column">
+            <a><video height="200" controls="controls" autoplay>
+                <source src="~/Media/Videos/@video.FileName" />
+            </video></a>
+            <p>@video.FileName</p>
+            <button class="btn btn-success">
+                @Html.ActionLink("Download", "DownloadFile",
+                 new { fileName = video.FileName })
+            </button>
+            <button class="btn btn-danger">
+                @Html.ActionLink("Delete", "DeleteFile",
+               new { fileName = video.FileName },
+               new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+            </button>
+        </div>
+    </div>
+    <br />
+}
 
+<script>
+    $(document).ready(function ($) {
+        $("a.group").fancybox({
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 600,
+            'speedOut': 200,
+            'overlayShow': false
+    });
+</script>

@@ -30,11 +30,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach()
-                <tr>
-                    <td></td>
-                </tr>
+                @foreach (FileModel file in Model)
+                {
+                    <tr>
+                        <td>@file.FileName</td>
+                        <td>
+                            <button class="btn btn-success">
+                                @Html.ActionLink("Download", "DownloadFile",
+                                 new { fileName = file.FileName })
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">
+                                @Html.ActionLink("Delete", "DeleteFile",
+                               new { fileName = file.FileName },
+                               new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+                            </button>
+                        </td>
+                    </tr>
+                }
             </tbody>
-            </table>
+        </table>
         </div>
     </div>

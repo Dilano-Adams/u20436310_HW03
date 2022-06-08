@@ -7,16 +7,19 @@
     * {
         box-sizing: border-box;
     }
+    .container{
+        word-wrap:break-word;
+        overflow:hidden
+    }
 
     /* Create two equal columns that floats next to each other */
     .column {
         float: left;
         width: 50%;
         padding: 10px;
-        height: 300px; /* Should be removed. Only for demonstration */
+        height: 300px;
     }
 
-    /* Clear floats after the columns */
     .row:after {
         content: "";
         display: table;
@@ -24,29 +27,35 @@
     }
 </style>
 
-<h1 class="text-uppercase mb-0">Document, Image and Vidoes Viewer</h1>
+<h1 class="text-uppercase mb-0">Document, Image and Videos Viewer</h1>
 
-<h3>This is the description of the application</h3>
+<h3>Description and Option Selector</h3>
 
 <div class="container d-flex align-items-center flex-column" style="background-color:khaki">
     <div class="row">
         <div class="column">
-            <h2> Description</h2>
-            <p> THIS IS WHERE THE DESCRIPTION GOES!</p>
+            <h2>Description</h2>
+            <p>The objective of this project is to be able to show all files in respective folders and be able to download all the files as well. This is the homepage which allows you to select the type of file you would like to add. There are three choices Files, Image and Videos, once on has been selected you will be able to upload a file to be read and displayed in its corresponding folder. The next tab is the About Me page which gives a short description of me. The next three tabs are the designated file folders that will allow you to view the respective files as well as download them back into your system.</p>
         </div>
-        <div class="column">
-            <form>
-                <h2>Option Selector</h2>
-                <input type="radio" id="docs" name="rad_docs" value="Document">
-                <label for="docs">Documents</label><br>
-                <input type="radio" id="img" name="rad_img" value="Image">
-                <label for="img">Images</label><br>
-                <input type="radio" id="vid" name="rad_vid" value="Video">
-                <label for="vid">Videos</label><br>
 
-                <input type="file" id="myfile" name="myfile" multiple> <br> <br>
-                <input type="submit">
-            </form>
+        <div class="column">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <form>
+                    <h2>Option Selector</h2>
+                    <input type="radio" id="docs" name="btnchoice" value="Document">
+                    <label for="docs">Documents</label><br>
+                    <input type="radio" id="img" name="btnchoice" value="Image">
+                    <label for="img">Images</label><br>
+                    <input type="radio" id="vid" name="btnchoice" value="Video">
+                    <label for="vid">Videos</label><br>
+
+                    <input type="file" id="myfile" name="myfile" multiple> <br> <br>
+                    <input type="submit">
+                </form>
+            }
+            <p>@ViewBag.Status</p>
         </div>
     </div>
 </div>
